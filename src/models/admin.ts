@@ -9,7 +9,7 @@ export const Admin = sequelize.define("admin", {
     Alastname: { type: DataTypes.STRING, allowNull: false },
     Aemail: { type: DataTypes.STRING, allowNull: false },
     Awhatsapp: { type: DataTypes.STRING, allowNull: false },
-    Apassoword: { type: DataTypes.STRING, allowNull: false },
+    Apassword: { type: DataTypes.STRING, allowNull: false },
 
     Astatus: { type: DataTypes.INTEGER, allowNull: false },
     Acreated: { type: DataTypes.DATE, field: 'Acreated', defaultValue: DataTypes.NOW, allowNull: false }

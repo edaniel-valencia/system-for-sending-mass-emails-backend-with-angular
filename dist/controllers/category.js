@@ -15,12 +15,12 @@ const ReadCategoryAll = (req, res) => __awaiter(void 0, void 0, void 0, function
     try {
         const listCategory = yield category_1.Category.findAll({});
         if (listCategory.length === 0) {
-            return res.status(404).json({ msg: "No se han encontrado usuarios" });
+            return res.status(404).json({ message: "No se han encontrado usuarios" });
         }
         res.json(listCategory);
     }
     catch (error) {
-        return res.status(500).json({ msg: "Error al encontrado usuarios", error });
+        return res.status(500).json({ message: "Error al encontrado usuarios", error });
     }
 });
 exports.ReadCategoryAll = ReadCategoryAll;

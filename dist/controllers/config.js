@@ -39,18 +39,18 @@ const Delete = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const config = yield config_1.Config.findOne({ where: { Cid: Cid } });
     if (!config) {
         return res.status(404).json({
-            msg: `No se ha encontrado registro con el Id ${Cid}`
+            message: `No se ha encontrado registro con el Id ${Cid}`
         });
     }
     try {
         config_1.Config.destroy({ where: { Cid: Cid } });
         return res.status(200).json({
-            msg: `Elimado Exitosa con Id ${Cid}`
+            message: `Elimado Exitosa con Id ${Cid}`
         });
     }
     catch (error) {
         return res.status(500).json({
-            msg: `Erro al actualizar el registro con Id ${Cid}`
+            message: `Erro al actualizar el registro con Id ${Cid}`
         });
     }
 });
@@ -62,7 +62,7 @@ const Update = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const config = yield config_1.Config.findOne({ where: { Cid: Cid } });
     if (!config) {
         return res.status(404).json({
-            msg: `No se ha encontrado registro con el Id ${Cid}`
+            message: `No se ha encontrado registro con el Id ${Cid}`
         });
     }
     try {
@@ -77,12 +77,12 @@ const Update = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             where: { Cid: Cid }
         });
         return res.status(200).json({
-            msg: `Actualización Exitosa con Id ${Cid}`
+            message: `Actualización Exitosa con Id ${Cid}`
         });
     }
     catch (error) {
         return res.status(500).json({
-            msg: `Erro al actualizar el registro con Id ${Cid}`
+            message: `Erro al actualizar el registro con Id ${Cid}`
         });
     }
 });

@@ -63,7 +63,7 @@ export const SendEmail = async (req: Request, res: Response) => {
         const info = await transporter.sendMail(mailOptions);
         console.log("Mensaje enviado exitosamente", info.response);
 
-        res.status(200).json({ msg: 'Mensaje enviado exitosamente', info: info.response, to: to, from: from });
+        res.status(200).json({ message: 'Mensaje enviado exitosamente', info: info.response, to: to, from: from });
         User.create({
             Uname: name,
             Ulastname: lastname,
@@ -98,7 +98,7 @@ export const SendEmailMasive = async (req: Request, res: Response) => {
 
     if (!file) {
         return res.status(400).json({
-            msg: "No se subió ninguna imagen"
+            message: "No se subió ninguna imagen"
         });
     }
 
@@ -144,7 +144,7 @@ export const SendEmailMasive = async (req: Request, res: Response) => {
         const listEmail = await getUser()
 
         if (listEmail.length === 0) {
-            res.status(404).json({ msg: 'No se han encontrado datos' });
+            res.status(404).json({ message: 'No se han encontrado datos' });
         }
 
         for (const user of listEmail) {
@@ -186,14 +186,14 @@ export const SendEmailMasive = async (req: Request, res: Response) => {
                 Mtype: 'Todos los correos del sistema',
                 Mstatus: 1
             });
-            res.status(200).json({ msg: 'Mensaje masivo, guardado exitosamente' });
+            res.status(200).json({ message: 'Mensaje masivo, guardado exitosamente' });
 
         } catch (error) {
             console.log("Error al guardar el mensaje masivo", error);
 
         }
 
-        res.status(200).json({ msg: 'Mensajes enviados exitosamente' });
+        res.status(200).json({ message: 'Mensajes enviados exitosamente' });
 
     } catch (error) {
 
@@ -226,7 +226,7 @@ export const sendMasiveByCategory = async (req: Request, res: Response) => {
 
     if (!file) {
         return res.status(400).json({
-            msg: "No se subió ninguna imagen"
+            message: "No se subió ninguna imagen"
         });
     }
 
@@ -262,7 +262,7 @@ export const sendMasiveByCategory = async (req: Request, res: Response) => {
 
 
         if (listEmail.length === 0) {
-            res.status(404).json({ msg: 'No se han encontrado datos' });
+            res.status(404).json({ message: 'No se han encontrado datos' });
         }
 
 
@@ -317,7 +317,7 @@ export const sendMasiveByCategory = async (req: Request, res: Response) => {
                 Mtype: type,
                 Mstatus: 1
             });
-            res.status(200).json({ msg: 'Mensaje masivo, guardado exitosamente' });
+            res.status(200).json({ message: 'Mensaje masivo, guardado exitosamente' });
 
         } catch (error) {
             console.log("Error al guardar el mensaje masivo", error);

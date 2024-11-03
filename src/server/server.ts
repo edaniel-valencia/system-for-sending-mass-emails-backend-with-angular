@@ -58,8 +58,7 @@ class Server {
             console.log("Conexion Exitosa");
 
         } catch (error) {
-            console.log("Error de conexion"+ error);
-            
+            console.log("Error de conexion"+ error);            
         }
     }
 

@@ -10,9 +10,7 @@ export const ReadUserPublic = async (req: Request, res: Response) => {
     res.json(
         listUser
     );
-
 }
-
 
 export const ReadUserAll = async (req: Request, res: Response) => {
 
@@ -29,13 +27,13 @@ export const ReadUserAll = async (req: Request, res: Response) => {
 
 
     if(listUser.length === 0){
-        return res.status(404).json({msg: "No se han encontrado usuarios"})
+        return res.status(404).json({message: "No se han encontrado usuarios"})
     }
     res.json(listUser);
 
 
    } catch (error) {
-    return res.status(500).json({msg: "Error al encontrado usuarios", error})
+    return res.status(500).json({message: "Error al encontrado usuarios", error})
 
    }
 }
@@ -56,18 +54,16 @@ export const ReadUserAllId = async (req: Request, res: Response) => {
 
 
     if(listUser.length === 0){
-        return res.status(404).json({msg: "No se han encontrado usuarios"})
+        return res.status(404).json({message: "No se han encontrado usuarios"})
     }
     res.json(listUser);
 
 
    } catch (error) {
-    return res.status(500).json({msg: "Error al encontrado usuarios", error})
+    return res.status(500).json({message: "Error al encontrado usuarios", error})
 
    }
 }
-
-
 
 export const CargarDatosOfExcel = async (req: Request, res: Response) => {
 
@@ -96,7 +92,7 @@ export const CargarDatosOfExcel = async (req: Request, res: Response) => {
         await User.bulkCreate(users)
         
 
-        res.status(200).json({ msg: 'Mensaje enviado exitosamente' });
+        res.status(200).json({ message: 'Mensaje enviado exitosamente' });
 
     } catch (error) {
 

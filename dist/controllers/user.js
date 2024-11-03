@@ -51,12 +51,12 @@ const ReadUserAll = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 }]
         });
         if (listUser.length === 0) {
-            return res.status(404).json({ msg: "No se han encontrado usuarios" });
+            return res.status(404).json({ message: "No se han encontrado usuarios" });
         }
         res.json(listUser);
     }
     catch (error) {
-        return res.status(500).json({ msg: "Error al encontrado usuarios", error });
+        return res.status(500).json({ message: "Error al encontrado usuarios", error });
     }
 });
 exports.ReadUserAll = ReadUserAll;
@@ -71,12 +71,12 @@ const ReadUserAllId = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 }]
         });
         if (listUser.length === 0) {
-            return res.status(404).json({ msg: "No se han encontrado usuarios" });
+            return res.status(404).json({ message: "No se han encontrado usuarios" });
         }
         res.json(listUser);
     }
     catch (error) {
-        return res.status(500).json({ msg: "Error al encontrado usuarios", error });
+        return res.status(500).json({ message: "Error al encontrado usuarios", error });
     }
 });
 exports.ReadUserAllId = ReadUserAllId;
@@ -98,7 +98,7 @@ const CargarDatosOfExcel = (req, res) => __awaiter(void 0, void 0, void 0, funct
             Ustatus: 1
         }));
         yield user_1.User.bulkCreate(users);
-        res.status(200).json({ msg: 'Mensaje enviado exitosamente' });
+        res.status(200).json({ message: 'Mensaje enviado exitosamente' });
     }
     catch (error) {
         console.log("Error al enviar el mensaje", error);

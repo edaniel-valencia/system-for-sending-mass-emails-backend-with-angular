@@ -49,7 +49,7 @@ export const Delete = async (req: Request, res: Response) => {
 
     if (!config) {
         return res.status(404).json({
-            msg: `No se ha encontrado registro con el Id ${Cid}`
+            message: `No se ha encontrado registro con el Id ${Cid}`
         })
     }
 
@@ -58,13 +58,13 @@ export const Delete = async (req: Request, res: Response) => {
         Config.destroy({where: { Cid: Cid }})
 
         return res.status(200).json({
-            msg: `Elimado Exitosa con Id ${Cid}`
+            message: `Elimado Exitosa con Id ${Cid}`
         })
 
     } catch (error) {
 
         return res.status(500).json({
-            msg: `Erro al actualizar el registro con Id ${Cid}`
+            message: `Erro al actualizar el registro con Id ${Cid}`
         })
         
     }
@@ -82,7 +82,7 @@ export const Update = async (req: Request, res: Response) => {
 
     if (!config) {
         return res.status(404).json({
-            msg: `No se ha encontrado registro con el Id ${Cid}`
+            message: `No se ha encontrado registro con el Id ${Cid}`
         })
     }
 
@@ -100,12 +100,12 @@ export const Update = async (req: Request, res: Response) => {
         }
         )
         return res.status(200).json({
-            msg: `Actualización Exitosa con Id ${Cid}`
+            message: `Actualización Exitosa con Id ${Cid}`
         })
     } catch (error) {
 
         return res.status(500).json({
-            msg: `Erro al actualizar el registro con Id ${Cid}`
+            message: `Erro al actualizar el registro con Id ${Cid}`
         })
     }
 

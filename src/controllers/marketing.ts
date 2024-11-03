@@ -12,13 +12,13 @@ export const Read = async (req: Request, res: Response) => {
 
 
     if(listMarketing.length === 0){
-        return res.status(404).json({msg: "No se han encontrado mensaje"})
+        return res.status(404).json({message: "No se han encontrado mensaje"})
     }
     res.json(listMarketing);
 
 
    } catch (error) {
-    return res.status(500).json({msg: "Error al encontrado usuarios", error})
+    return res.status(500).json({message: "Error al encontrado usuarios", error})
 
    }
 }

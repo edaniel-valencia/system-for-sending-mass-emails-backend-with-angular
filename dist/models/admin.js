@@ -12,7 +12,7 @@ exports.Admin = conexion_1.default.define("admin", {
     Alastname: { type: sequelize_1.DataTypes.STRING, allowNull: false },
     Aemail: { type: sequelize_1.DataTypes.STRING, allowNull: false },
     Awhatsapp: { type: sequelize_1.DataTypes.STRING, allowNull: false },
-    Apassoword: { type: sequelize_1.DataTypes.STRING, allowNull: false },
+    Apassword: { type: sequelize_1.DataTypes.STRING, allowNull: false },
     Astatus: { type: sequelize_1.DataTypes.INTEGER, allowNull: false },
     Acreated: { type: sequelize_1.DataTypes.DATE, field: 'Acreated', defaultValue: sequelize_1.DataTypes.NOW, allowNull: false }
 }, {

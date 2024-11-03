@@ -61,7 +61,7 @@ const SendEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         // Enviar correo
         const info = yield transporter.sendMail(mailOptions);
         console.log("Mensaje enviado exitosamente", info.response);
-        res.status(200).json({ msg: 'Mensaje enviado exitosamente', info: info.response, to: to, from: from });
+        res.status(200).json({ message: 'Mensaje enviado exitosamente', info: info.response, to: to, from: from });
         user_1.User.create({
             Uname: name,
             Ulastname: lastname,
@@ -87,7 +87,7 @@ const SendEmailMasive = (req, res) => __awaiter(void 0, void 0, void 0, function
     console.log("Estoy aca", req.body);
     if (!file) {
         return res.status(400).json({
-            msg: "No se subió ninguna imagen"
+            message: "No se subió ninguna imagen"
         });
     }
     const uploadPath = path_1.default.join('./assets/marketing');
@@ -116,7 +116,7 @@ const SendEmailMasive = (req, res) => __awaiter(void 0, void 0, void 0, function
         });
         const listEmail = yield getUser();
         if (listEmail.length === 0) {
-            res.status(404).json({ msg: 'No se han encontrado datos' });
+            res.status(404).json({ message: 'No se han encontrado datos' });
         }
         for (const user of listEmail) {
             const email = user.get('Uemail');
@@ -150,12 +150,12 @@ const SendEmailMasive = (req, res) => __awaiter(void 0, void 0, void 0, function
                 Mtype: 'Todos los correos del sistema',
                 Mstatus: 1
             });
-            res.status(200).json({ msg: 'Mensaje masivo, guardado exitosamente' });
+            res.status(200).json({ message: 'Mensaje masivo, guardado exitosamente' });
         }
         catch (error) {
             console.log("Error al guardar el mensaje masivo", error);
         }
-        res.status(200).json({ msg: 'Mensajes enviados exitosamente' });
+        res.status(200).json({ message: 'Mensajes enviados exitosamente' });
     }
     catch (error) {
         console.log("Error al enviar el mensaje", error);
@@ -171,7 +171,7 @@ const sendMasiveByCategory = (req, res) => __awaiter(void 0, void 0, void 0, fun
     console.log("Category Id: ", Cid);
     if (!file) {
         return res.status(400).json({
-            msg: "No se subió ninguna imagen"
+            message: "No se subió ninguna imagen"
         });
     }
     const uploadPath = path_1.default.join('./assets/marketing');
@@ -192,7 +192,7 @@ const sendMasiveByCategory = (req, res) => __awaiter(void 0, void 0, void 0, fun
         const listEmail = yield user_1.User.findAll({ where: { CategoryId: Cid } });
         const listCategory = yield category_1.Category.findOne({ where: { Cid: Cid } });
         if (listEmail.length === 0) {
-            res.status(404).json({ msg: 'No se han encontrado datos' });
+            res.status(404).json({ message: 'No se han encontrado datos' });
         }
         for (const user of listEmail) {
             const email = user.get('Uemail');
@@ -237,7 +237,7 @@ const sendMasiveByCategory = (req, res) => __awaiter(void 0, void 0, void 0, fun
                 Mtype: type,
                 Mstatus: 1
             });
-            res.status(200).json({ msg: 'Mensaje masivo, guardado exitosamente' });
+            res.status(200).json({ message: 'Mensaje masivo, guardado exitosamente' });
         }
         catch (error) {
             console.log("Error al guardar el mensaje masivo", error);
