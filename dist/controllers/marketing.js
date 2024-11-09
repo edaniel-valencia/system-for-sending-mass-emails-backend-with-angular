@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Read = void 0;
+exports.DeleteMarketing = exports.Read = void 0;
 const marketing_1 = require("../models/marketing");
 const Read = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -24,3 +24,20 @@ const Read = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.Read = Read;
+const DeleteMarketing = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { Mid } = req.params;
+    const marketing = yield marketing_1.Marketing.findOne({ where: { Mid: Mid } });
+    if (!marketing) {
+        res.status(404).json(`No se ha encontrado el campaña ${Mid}  `);
+    }
+    try {
+        marketing_1.Marketing.destroy({ where: { Mid: Mid }
+        });
+        res.status(200).json({ message: 'Camapaña eliminado exitosamente' });
+    }
+    catch (error) {
+        console.log("Error al eliminar la Camapaña: ", error);
+        res.status(500).json({ error: 'Error al eliminar la Camapaña' });
+    }
+});
+exports.DeleteMarketing = DeleteMarketing;

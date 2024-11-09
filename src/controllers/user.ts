@@ -103,3 +103,85 @@ export const CargarDatosOfExcel = async (req: Request, res: Response) => {
 
 }
 
+
+export const CreateUser = async (req: Request, res: Response) => {
+    
+    const { Uname, Ulastname, Uemail, Uwhatsapp, CategoryId } = req.body
+    console.log(req.body);
+    
+    try {
+        User.create({
+            Uname: Uname,
+            Ulastname: Ulastname,
+            Uemail: Uemail,
+            Uwhatsapp: Uwhatsapp,
+            CategoryId: CategoryId,
+            Ustatus: 1,
+        })
+
+        res.status(200).json({ message: 'Usuario creado exitosamente' });
+
+    } catch (error) {
+
+        console.log("Error al crear el usuario: ", error);
+        res.status(500).json({ error: 'Error al crear el usuario' });
+    }
+}
+
+export const UpdateUser = async (req: Request, res: Response) => {
+
+    const { Uid } = req.params
+    const { Uname, Ulastname, Uemail, Uwhatsapp, CategoryId, Ustatus} = req.body
+
+    const user = await User.findOne({where: {Uid: Uid}})
+    
+    if(!user){
+        res.status(404).json(`No se ha encontrado el usuarios ${Uid} con ${Uemail} `)
+    }
+
+    try {
+        User.update({
+            Uname: Uname,
+            Ulastname: Ulastname,
+            Uemail: Uemail,
+            Uwhatsapp: Uwhatsapp,
+            CategoryId: CategoryId,
+
+            Ustatus: Ustatus,
+        },{
+            where: {Uid: Uid}
+        })
+
+
+        res.status(200).json({ message: 'Usuario actualizado exitosamente' });
+
+    } catch (error) {
+
+        console.log("Error al actualizar el usuario: ", error);
+        res.status(500).json({ error: 'Error al actualizar el usuario' });
+    }
+}
+
+export const DeleteUser = async (req: Request, res: Response) => {
+
+    const { Uid } = req.params
+    
+    const user = await User.findOne({where: {Uid: Uid}})
+
+    if(!user){
+        res.status(404).json(`No se ha encontrado el usuarios ${Uid}  `)
+    }
+
+    try {
+        User.destroy({where: {Uid: Uid}
+        })
+
+
+        res.status(200).json({ message: 'Usuario eliminado exitosamente'});
+
+    } catch (error) {
+
+        console.log("Error al eliminar el usuario: ", error);
+        res.status(500).json({ error: 'Error al eliminar el usuario' });
+    }
+}

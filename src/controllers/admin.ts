@@ -28,10 +28,16 @@ export const Auth = async (req: Request, res: Response) => {
     }
 
     const token = jwt.sign({
-        Aemail: Aemail
+        Aemail: Aemail,
+        Aid: admin.Aid,
+        Aname: admin.Aname,
+        Alastname: admin.Alastname
     }, process.env.SECRET_KEY || 'Edaniel-Valencia',
         //  {expiresIn: '10000'}
     );
+
+    console.log(token);
+    
 
     if (token) {
         res.json({ token })
@@ -39,8 +45,6 @@ export const Auth = async (req: Request, res: Response) => {
     }
 
 }
-
-
 
 
 export const Register = async (req: Request, res: Response) => {

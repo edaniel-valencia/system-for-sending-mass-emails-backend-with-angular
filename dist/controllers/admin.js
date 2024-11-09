@@ -32,8 +32,12 @@ const Auth = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
     const token = jsonwebtoken_1.default.sign({
-        Aemail: Aemail
+        Aemail: Aemail,
+        Aid: admin.Aid,
+        Aname: admin.Aname,
+        Alastname: admin.Alastname
     }, process.env.SECRET_KEY || 'Edaniel-Valencia');
+    console.log(token);
     if (token) {
         res.json({ token });
     }

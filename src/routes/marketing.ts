@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { Read } from "../controllers/marketing";
+import { DeleteMarketing, Read } from "../controllers/marketing";
 import validateToken from "../midlewares/token";
 
 const router = Router();
@@ -7,6 +7,7 @@ const router = Router();
 router.get("/api/marketing/readAll/", validateToken, Read)
 
 
+router.delete('/api/marketing/delete/:Mid', validateToken, DeleteMarketing);
 
 
 export default router

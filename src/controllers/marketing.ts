@@ -25,3 +25,28 @@ export const Read = async (req: Request, res: Response) => {
 
 
 
+export const DeleteMarketing = async (req: Request, res: Response) => {
+
+    const { Mid } = req.params
+    
+    const marketing = await Marketing.findOne({where: {Mid: Mid}})
+
+    if(!marketing){
+        res.status(404).json(`No se ha encontrado el campaña ${Mid}  `)
+    }
+
+    try {
+       Marketing.destroy({where: {Mid: Mid}
+        })
+        res.status(200).json({ message: 'Camapaña eliminado exitosamente'});
+
+    } catch (error) {
+
+        console.log("Error al eliminar la Camapaña: ", error);
+        res.status(500).json({ error: 'Error al eliminar la Camapaña' });
+    }
+}
+
+
+
+

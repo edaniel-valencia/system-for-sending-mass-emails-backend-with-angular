@@ -32,7 +32,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CargarDatosOfExcel = exports.ReadUserAllId = exports.ReadUserAll = exports.ReadUserPublic = void 0;
+exports.DeleteUser = exports.UpdateUser = exports.CreateUser = exports.CargarDatosOfExcel = exports.ReadUserAllId = exports.ReadUserAll = exports.ReadUserPublic = void 0;
 const user_1 = require("../models/user");
 const category_1 = require("../models/category");
 const XLSX = __importStar(require("xlsx"));
@@ -106,3 +106,66 @@ const CargarDatosOfExcel = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.CargarDatosOfExcel = CargarDatosOfExcel;
+const CreateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { Uname, Ulastname, Uemail, Uwhatsapp, CategoryId } = req.body;
+    console.log(req.body);
+    try {
+        user_1.User.create({
+            Uname: Uname,
+            Ulastname: Ulastname,
+            Uemail: Uemail,
+            Uwhatsapp: Uwhatsapp,
+            CategoryId: CategoryId,
+            Ustatus: 1,
+        });
+        res.status(200).json({ message: 'Usuario creado exitosamente' });
+    }
+    catch (error) {
+        console.log("Error al crear el usuario: ", error);
+        res.status(500).json({ error: 'Error al crear el usuario' });
+    }
+});
+exports.CreateUser = CreateUser;
+const UpdateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { Uid } = req.params;
+    const { Uname, Ulastname, Uemail, Uwhatsapp, CategoryId, Ustatus } = req.body;
+    const user = yield user_1.User.findOne({ where: { Uid: Uid } });
+    if (!user) {
+        res.status(404).json(`No se ha encontrado el usuarios ${Uid} con ${Uemail} `);
+    }
+    try {
+        user_1.User.update({
+            Uname: Uname,
+            Ulastname: Ulastname,
+            Uemail: Uemail,
+            Uwhatsapp: Uwhatsapp,
+            CategoryId: CategoryId,
+            Ustatus: Ustatus,
+        }, {
+            where: { Uid: Uid }
+        });
+        res.status(200).json({ message: 'Usuario actualizado exitosamente' });
+    }
+    catch (error) {
+        console.log("Error al actualizar el usuario: ", error);
+        res.status(500).json({ error: 'Error al actualizar el usuario' });
+    }
+});
+exports.UpdateUser = UpdateUser;
+const DeleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { Uid } = req.params;
+    const user = yield user_1.User.findOne({ where: { Uid: Uid } });
+    if (!user) {
+        res.status(404).json(`No se ha encontrado el usuarios ${Uid}  `);
+    }
+    try {
+        user_1.User.destroy({ where: { Uid: Uid }
+        });
+        res.status(200).json({ message: 'Usuario eliminado exitosamente' });
+    }
+    catch (error) {
+        console.log("Error al eliminar el usuario: ", error);
+        res.status(500).json({ error: 'Error al eliminar el usuario' });
+    }
+});
+exports.DeleteUser = DeleteUser;

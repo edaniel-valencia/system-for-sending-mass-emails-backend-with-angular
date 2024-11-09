@@ -12,5 +12,9 @@ const router = (0, express_1.Router)();
 const upload = (0, multer_1.default)({ storage: storage_1.storage });
 router.get("/api/user/readAll/", token_1.default, user_1.ReadUserAll);
 router.get("/api/user/readAllId/:categoryId", token_1.default, user_1.ReadUserAllId);
-router.post('/api/user/create', upload.single('excel'), token_1.default, user_1.CargarDatosOfExcel);
+router.post('/api/user/createUserFile', upload.single('excel'), token_1.default, user_1.CargarDatosOfExcel);
+//CRUD
+router.post('/api/user/create', token_1.default, user_1.CreateUser);
+router.patch('/api/user/update/:Uid', token_1.default, user_1.UpdateUser);
+router.delete('/api/user/delete/:Uid', token_1.default, user_1.DeleteUser);
 exports.default = router;

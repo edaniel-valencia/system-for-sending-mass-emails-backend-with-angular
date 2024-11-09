@@ -8,4 +8,5 @@ const marketing_1 = require("../controllers/marketing");
 const token_1 = __importDefault(require("../midlewares/token"));
 const router = (0, express_1.Router)();
 router.get("/api/marketing/readAll/", token_1.default, marketing_1.Read);
+router.delete('/api/marketing/delete/:Mid', token_1.default, marketing_1.DeleteMarketing);
 exports.default = router;
