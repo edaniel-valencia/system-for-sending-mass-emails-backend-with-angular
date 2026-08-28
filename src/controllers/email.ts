@@ -115,7 +115,7 @@ export const SendEmailMasive = async (req: Request, res: Response) => {
 
     fs.writeFileSync(filePath, file.buffer);
 
-    const imageURL = `http://localhost:3001/assets/marketing/${fileName}`
+    const imageURL = `${process.env.APP_URL || 'http://localhost:3001'}/assets/marketing/${fileName}`
 
 
     const config = await Config.findOne({ where: { Cstatus: 1 } });
@@ -243,7 +243,7 @@ export const sendMasiveByCategory = async (req: Request, res: Response) => {
 
     fs.writeFileSync(filePath, file.buffer);
 
-    const imageURL = `http://localhost:3001/assets/marketing/${fileName}`
+    const imageURL = `${process.env.APP_URL || 'http://localhost:3001'}/assets/marketing/${fileName}`
 
     const config = await Config.findOne({ where: { Cstatus: 1 } });
     console.log(config);

@@ -1,0 +1,4 @@
+allowBuilds:
+  bcrypt: true
+minimumReleaseAgeExclude:
+  - nodemailer@9.0.6

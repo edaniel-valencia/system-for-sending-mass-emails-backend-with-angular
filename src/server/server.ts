@@ -49,8 +49,8 @@ class Server {
     async conexionDB(){
         try {
 
-            await User.sync()
             await Category.sync()
+            await User.sync()
             await Config.sync()
             await Marketing.sync()
             await Admin.sync()
